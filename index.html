@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoveFlix | Happy Birthday!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- 🔒 PASSWORD LOGIN SCREEN -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-logo">LoveFlix</div>
+        <div class="login-box">
+            <h2>Who is watching?</h2>
+            <img src="https://placehold.net/avatar.svg" alt="Profile" class="profile-pic"  style="width:60px">
+            <p style="margin: 15px 0; color: #8c8c8c;">Enter your special password to unlock</p>
+            <input type="password" id="passwordInput" placeholder="Password" class="login-input">
+            <button onclick="checkPassword()" class="login-btn">Unlock Story</button>
+            <p id="loginError" class="login-error">Incorrect password. Hint: What's the magic word?</p>
+        </div>
+    </div>
+
+    <!-- 🎬 MAIN APPLICATION (Hidden until unlocked) -->
+    <div id="mainApp" style="display: none;">
+        
+        <nav id="nav" class="nav">
+            <div class="nav-logo">LoveFlix</div>
+            <div class="nav-avatar">🎂 Birthday Edition</div>
+        </nav>
+
+        <header class="hero">
+            <div class="hero-gradient"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">Happy Birthday, My Love!</h1>
+                <p class="hero-description">A special Netflix Original created just for you on your special day. Starring you, me, and our beautiful journey together.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-play" onclick="openModal('youtube', 'https://www.youtube.com/watch?v=ZgE9knUTt_8')"><i class="fas fa-play"></i> Play Video</button>
+                    <!-- THE GIFT BUTTON -->
+                    <button class="btn btn-gift" onclick="openLetter()"><i class="fas fa-gift"></i> Open Gift</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="content">
+            <!-- ROW 1 -->
+            <div class="row">
+                <h2 class="row-title">Your Favorite Memories</h2>
+                <div class="row-posters">
+                    <div class="poster-container modal-trigger" data-caption="Our Roka on 31st Oct 2025 🫂♥️🫂" data-type="image" data-src="./img/image.png">
+                        <img class="row-poster" src="./img/thumbnail1.png" alt="Memory">
+                    </div>
+                    <div class="poster-container modal-trigger" data-caption="That time we laughed so hard we cried! 😂" data-type="video" data-src="https://youtube.com/shorts/b0m6oxo0RQk?feature=share">
+                        <img class="row-poster" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=500" alt="Video">
+                        <div class="poster-overlay"><i class="fas fa-play-circle"></i></div>
+                    </div>
+                    <div class="poster-container modal-trigger" data-caption="That time we laughed so hard we cried! 😂" data-type="image" data-src="./img/image3.jpeg">
+                        <img class="row-poster" src="./img/thumbnail4.png" alt="Memory">
+                    </div>
+                    <div class="poster-container modal-trigger" data-caption="That time we laughed so hard we cried! 😂" data-type="image" data-src="./img/image2.jpeg">
+                        <img class="row-poster" src="./img/thumbnail2.jpeg" alt="Memory">        
+                    </div>
+                    
+                     <div class="poster-container modal-trigger" data-caption="That time we laughed so hard we cried! 😂" data-type="image" data-src="./img/image10.png">
+                        <img class="row-poster" src="./img/thumbnail2.jpeg" alt="Memory">        
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 2 -->
+            <div class="row">
+                <h2 class="row-title">Our Adventures</h2>
+                <div class="row-posters">
+                    <div class="poster-container modal-trigger" data-caption="That time we laughed so hard we cried! 😂" data-type="video" data-src="https://youtube.com/shorts/55OdhaLb4_g?feature=share">
+                        <img class="row-poster" src="./img/thumbnail3.png" alt="Adventure">
+                         <div class="poster-overlay"><i class="fas fa-play-circle"></i></div>
+                    </div>
+                    <div class="poster-container modal-trigger" data-caption="That time we laughed so hard we cried! 😂" data-type="video" data-src="https://www.youtube.com/watch?v=nEEaLAZQwRs">
+                        <img class="row-poster" src="./img/thumbnail5.png" alt="Adventure">
+                         <div class="poster-overlay"><i class="fas fa-play-circle"></i></div>
+                    </div>
+                    <div class="poster-container modal-trigger" data-caption="That time we laughed so hard we cried! 😂" data-type="video" data-src="https://youtube.com/shorts/1zgAhQN84cU?feature=share">
+                        <img class="row-poster" src="./img/thumbnail6.png" alt="Adventure">
+                         <div class="poster-overlay"><i class="fas fa-play-circle"></i></div>
+                    </div>
+                    <div class="poster-container modal-trigger" data-caption="That time we laughed so hard we cried! 😂" data-type="video" data-src="https://youtube.com/shorts/_xCq4-SavAQ?feature=share">
+                        <img class="row-poster" src="./img/thumbnail7.png" alt="Adventure">
+                         <div class="poster-overlay"><i class="fas fa-play-circle"></i></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 3 -->
+            <div class="row">
+                <h2 class="row-title">Our Cute, Funny & Romantic Moments</h2>
+                <div class="row-posters">
+                    <div class="poster-container modal-trigger" data-caption="That time we laughed so hard we cried! 😂" data-type="video" data-src="https://youtube.com/shorts/S4-6a9OMb24?feature=share">
+                        <img class="row-poster" src="./img/thumbnail9.png" alt="Funny">
+                         <div class="poster-overlay"><i class="fas fa-play-circle"></i></div>
+                    </div>
+                    <div class="poster-container modal-trigger" data-caption="That time we laughed so hard we cried! 😂" data-type="image" data-src="./img/image8.jpeg">
+                        <img class="row-poster" src="./img/image8.jpeg" alt="Funny">
+                    </div>
+                    <div class="poster-container modal-trigger" data-caption="That time we laughed so hard we cried! 😂" data-type="video" data-src="https://youtube.com/shorts/-ODNV9ULA5g?feature=share">
+                        <img class="row-poster" src="./img/thumbnail8.png" alt="Funny">
+                         <div class="poster-overlay"><i class="fas fa-play-circle"></i></div>
+                    </div>
+                    <div class="poster-container modal-trigger" data-caption="That time we laughed so hard we cried! 😂" data-type="image" data-src="./img/image9.jpeg">
+                        <img class="row-poster" src="./img/image9.jpeg" alt="Funny">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 4: INTERACTIVE GAMES -->
+            <div class="row">
+                <h2 class="row-title">Interactive Experiences (Play Me)</h2>
+                <div class="row-posters">
+                    <!-- GAME 1 -->
+                    <div class="poster-container" onclick="openGame('trivia')">
+                        <img class="row-poster" src="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?q=80&w=500" alt="Trivia Game">
+                        <div class="poster-overlay" style="opacity: 1; background: rgba(0,0,0,0.6);"><h3 style="text-align:center;">Our Trivia<br><i class="fas fa-question-circle"></i></h3></div>
+                    </div>
+                    <!-- GAME 2 -->
+                    <div class="poster-container" onclick="openGame('find')">
+                        <img class="row-poster" src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=500" alt="Find Game">
+                        <div class="poster-overlay" style="opacity: 1; background: rgba(0,0,0,0.6);"><h3 style="text-align:center;">Find The Ring<br><i class="fas fa-search"></i></h3></div>
+                    </div>
+                   <!-- GAME 3: MEMORY MATCH -->
+<div class="poster-container" onclick="openGame('memory')">
+    <img class="row-poster" src="https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?q=80&w=500" alt="Memory Match">
+    <div class="poster-overlay" style="opacity: 1; background: rgba(0,0,0,0.6);"><h3 style="text-align:center;">Memory Match<br><i class="fas fa-heart"></i></h3></div>
+</div>
+
+<!-- GAME 4: LOVE CALCULATOR -->
+<div class="poster-container" onclick="openGame('calculator')">
+    <img class="row-poster" src="https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?q=80&w=500" alt="Love Calculator">
+    <div class="poster-overlay" style="opacity: 1; background: rgba(0,0,0,0.6);"><h3 style="text-align:center;">Love Calculator<br><i class="fas fa-calculator"></i></h3></div>
+</div>
+                </div>
+            </div>
+        </main>
+
+        <!-- THANK YOU SECTION -->
+        <footer class="thank-you-footer">
+            <h2>Thank you for being you.</h2>
+            <p>Every day with you is a blessing. Here is to a lifetime of new seasons and beautiful memories.</p>
+            <p style="margin-top: 15px; color: #e50914; font-weight: bold;">I love you! ❤️</p>
+        </footer>
+
+    </div> <!-- End Main App -->
+
+    <!-- ================= MODALS ================= -->
+
+    <!-- Media Modal (Images/Videos) -->
+    <div id="mediaModal" class="modal">
+        <div class="modal-overlay" onclick="closeModal('mediaModal')"></div>
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('mediaModal')">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Letter Modal (Typewriter Animation) -->
+    <div id="letterModal" class="modal">
+        <div class="modal-overlay" onclick="closeModal('letterModal')"></div>
+        <div class="modal-content letter-bg">
+            <span class="modal-close" style="color: black;" onclick="closeModal('letterModal')">&times;</span>
+            <div class="letter-container">
+                <h2 style="color: #e50914; margin-bottom: 20px;">My Birthday Wish For You...</h2>
+                <p id="typewriterText" class="typewriter-text"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Modal -->
+    <div id="gameModal" class="modal">
+        <div class="modal-overlay" onclick="closeModal('gameModal')"></div>
+        <div class="modal-content game-bg">
+            <span class="modal-close" onclick="closeModal('gameModal')">&times;</span>
+            <div id="gameContainer" class="game-container">
+                <!-- Game content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
