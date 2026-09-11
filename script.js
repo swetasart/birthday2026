@@ -1,7 +1,7 @@
 /* =========================================
    1. PASSWORD PROTECTION LOGIC
    ========================================= */
-const SECRET_PASSWORD = "hellobabes"; 
+const SECRET_PASSWORD = ""; 
 
 function checkPassword() {
     const input = document.getElementById('passwordInput').value.toLowerCase();
@@ -97,8 +97,8 @@ function openModal(type, source, caption) {
 
         modalBody.innerHTML = `
             <img
-                src="${source}"
-                style="max-width: 100vw; max-height: 100vh; width: auto; height: auto; object-fit: contain; display: block; margin: auto;"
+                src="${source}" 
+                style="max-width: 100vw; max-height: 100vh; width: 100%; height: auto; object-fit: contain; display: block; margin: auto;"
             >
             ${captionHtml}
         `;
@@ -193,24 +193,67 @@ let typewriterInterval;
 function openLetter() {
     const modal = document.getElementById('letterModal');
     const textContainer = document.getElementById('typewriterText');
-    textContainer.innerHTML = '<span class="cursor"></span>'; 
-    
+    const letterModal = document.querySelector('.letter-bg');
+
+    textContainer.innerHTML = '<span class="cursor"></span>';
+
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 
     let i = 0;
-    clearInterval(typewriterInterval); 
-    
+    clearInterval(typewriterInterval);
+
+    // Start from the top every time the letter opens
+    letterModal.scrollTop = 0;
+
     typewriterInterval = setInterval(() => {
+
         if (i < birthdayLetter.length) {
-            textContainer.innerHTML = textContainer.innerHTML.replace('<span class="cursor"></span>', '');
-            textContainer.innerHTML += birthdayLetter.charAt(i) + '<span class="cursor"></span>';
+
+            textContainer.innerHTML =
+                textContainer.innerHTML.replace(
+                    '<span class="cursor"></span>',
+                    ''
+                );
+
+            textContainer.innerHTML +=
+                birthdayLetter.charAt(i) +
+                '<span class="cursor"></span>';
+
             i++;
+
+            // 👇 Automatically scroll down as text is typed
+            letterModal.scrollTop = letterModal.scrollHeight;
+
         } else {
             clearInterval(typewriterInterval);
         }
-    }, 50); 
+
+    }, 50);
 }
+
+
+// function openLetter() {
+//     const modal = document.getElementById('letterModal');
+//     const textContainer = document.getElementById('typewriterText');
+//     textContainer.innerHTML = '<span class="cursor"></span>'; 
+    
+//     modal.classList.add('active');
+//     document.body.style.overflow = 'hidden';
+
+//     let i = 0;
+//     clearInterval(typewriterInterval); 
+    
+//     typewriterInterval = setInterval(() => {
+//         if (i < birthdayLetter.length) {
+//             textContainer.innerHTML = textContainer.innerHTML.replace('<span class="cursor"></span>', '');
+//             textContainer.innerHTML += birthdayLetter.charAt(i) + '<span class="cursor"></span>';
+//             i++;
+//         } else {
+//             clearInterval(typewriterInterval);
+//         }
+//     }, 50); 
+// }
 
 /* =========================================
    5. INTERACTIVE GAMES LOGIC
@@ -238,11 +281,12 @@ function openGame(gameType) {
 
 // --- GAME 1: MULTI-QUESTION TRIVIA ---
 const triviaQuestions = [
-    { q: "Where did we go on our very first date?", options: ["The Movies", "That Coffee Shop", "The Park"], answer: 1 },
-    { q: "What is my absolute favorite food?", options: ["Pizza", "Sushi", "Tacos"], answer: 0 },
-    { q: "Who said 'I love you' first?", options: ["You did!", "I did!", "We said it at the same time"], answer: 1 },
-    { q: "What was the name of the place we went for our first anniversary?", options: ["The Beach House", "Mountain Cabin", "City Hotel"], answer: 0 },
-    { q: "What is our dream vacation destination?", options: ["Paris", "Maldives", "Tokyo"], answer: 2 }
+    { q: "Where did we go on our very first date?", options: ["Mall", "Lieto Pizza", "Urja's Flat"], answer: 1 },
+    { q: "What is my absolute favorite food?", options: ["Pizza", "You", "Pani Poori"], answer: 1 },
+    { q: "Who said 'I love you' first?", options: ["You did!", "I did!", "We said it at the same time"], answer: 0 },
+    { q: "What was the first gift I gave you?", options: ["Ear Pods", "Kinder Joy", "Suit"], answer: 0 },
+    { q: "What would I miss most if you were far away?", options: ["Hugs", "Kisses", "Literally everything about you ❤️"], answer: 2 },
+    { q: "Finally… who got luckier in this relationship?", options:["Me", "You", "Obviously You", "Obviously Me", "Both of Us"], answer: 2}
 ];
 
 let currentTriviaIndex = 0;
@@ -254,7 +298,7 @@ function loadTriviaQuestion(container) {
         container.innerHTML = `
             <h2 style="color:#e50914; margin-bottom: 20px;">Game Over!</h2>
             <p style="font-size: 1.5rem; margin-bottom: 30px;">You scored ${triviaScore} out of ${triviaQuestions.length}!</p>
-            <p>${triviaScore === 5 ? "Perfect score! You know us so well ❤️" : "Great job! I love you! ❤️"}</p>
+            <p>${triviaScore === 6 ? "Perfect score! You know us so well ❤️" : "Great job! I love you! ❤️"}</p>
         `;
         return;
     }
@@ -262,7 +306,7 @@ function loadTriviaQuestion(container) {
     const currentQ = triviaQuestions[currentTriviaIndex];
     
     container.innerHTML = `
-        <h2 style="color:#e50914; margin-bottom: 10px;">Couple's Trivia (${currentTriviaIndex + 1}/5)</h2>
+        <h2 style="color:#e50914; margin-bottom: 10px;">Couple's Trivia (${currentTriviaIndex + 1}/6)</h2>
         <p style="font-size: 1.2rem; margin-bottom: 30px;">${currentQ.q}</p>
         <div id="optionsContainer">
             ${currentQ.options.map((opt, index) => 

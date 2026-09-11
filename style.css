@@ -76,8 +76,41 @@ body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-c
 }
 
 /* Letter & Game Styles */
-.letter-bg { background: #fdf5e6; color: #333; padding: 50px; min-height: 50vh; display: flex; align-items: center; justify-content: center; }
-.letter-container { width: 100%; max-width: 700px; }
+/* .letter-bg { background: #fdf5e6; color: #333; padding: 50px; min-height: 50vh; display: flex; align-items: center; justify-content: center; } */
+.letter-container { width: 100%; max-width: 700px; } 
+
+
+.letter-bg {
+    background: #fdf5e6; color: #333; padding: 50px;
+    width: 70%;
+    max-width: 800px;
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+/* Scrollbar */
+.letter-bg::-webkit-scrollbar {
+    width: 6px;
+}
+
+.letter-bg::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.letter-bg::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
 .typewriter-text { font-family: 'Dancing Script', cursive; font-size: 2.2rem; line-height: 1.6; white-space: pre-wrap; }
 .cursor { border-right: 2px solid #333; animation: blink 0.75s step-end infinite; }
 @keyframes blink { 50% { border-color: transparent; } }
@@ -109,7 +142,10 @@ body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-c
     .poster-container { width: 85vw; height: 47vw; scroll-snap-align: center; margin-right: 15px; }
     
     .modal-content { width: 95%; }
-    .letter-bg { padding: 30px; }
+    .letter-bg {
+        width: 90%;
+        max-height: 85vh;
+    }
     .thank-you-footer h2 { font-size: 2.2rem; }
 }
 /* --- MODAL CAPTION STYLE --- */
