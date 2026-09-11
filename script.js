@@ -1,7 +1,7 @@
 /* =========================================
    1. PASSWORD PROTECTION LOGIC
    ========================================= */
-const SECRET_PASSWORD = ""; 
+const SECRET_PASSWORD = "iloveyou"; 
 
 function checkPassword() {
     const input = document.getElementById('passwordInput').value.toLowerCase();
